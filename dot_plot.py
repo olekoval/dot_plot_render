@@ -9,7 +9,6 @@ df = pd.read_csv('ehr_684rows.csv')
 
 # Ініціалізація додатка Dash
 app = Dash(__name__)
-server = app.server
 
 # Оформлення макету
 app.layout = html.Div([
@@ -41,7 +40,9 @@ def dot(_):  # Параметр "_" щоб позначити невикорис
     fig.update_xaxes(range=[mn_age - 1, mx_age + 1])
 
     return fig
-
+    
+# Зазначаємо сервер
+server = app.server
 # Запуск додатка
 if __name__ == '__main__':
     app.run_server(debug=True)
