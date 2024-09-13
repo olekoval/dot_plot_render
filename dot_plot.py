@@ -13,15 +13,19 @@ app = Dash(__name__)
 # Оформлення макету
 app.layout = html.Div([
     html.H1(children='Dot plot', style={'textAlign':'center'}),
+    dcc.Dropdown([0.25, 0.50, 0.75, 1], 1, id='percent-dropdown'),
     dcc.Graph(id='graph-content')
 ])
 
 # Callback для оновлення графіку
 @callback(
     Output('graph-content', 'figure'),
-    Input('graph-content', 'id')  # Додаємо Input для активації callback
+  #  Input('graph-content', 'id')  # Додаємо Input для активації callback
+    Input('percent-dropdown', 'value')
 )
-def dot(_):  # Параметр "_" щоб позначити невикористаний Input
+#def dot(_):  # Параметр "_" щоб позначити невикористаний Input
+def dot(value):
+    df = df.sample(frac=value)
     # Обчислення кількості для віку
     df['Count_вік'] = df.groupby('Вік').cumcount() + 1  # !!! 
     mx = df['Count_вік'].max()
