@@ -35,7 +35,7 @@ def dot(value):
     # Створення графіку
     fig = px.scatter(dff, x='Вік', y='Count_вік')
     # Настройка розміру точок
-    fig.update_traces(marker=dict(size=10)) 
+    fig.update_traces(marker=dict(size=10 + (1 / value))) 
     # Настройка осі Y для відображення лише цілих чисел
     fig.update_yaxes(tickmode='linear', dtick=1)
     # Настройка діапазону значень осі Y
