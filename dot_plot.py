@@ -24,16 +24,16 @@ app.layout = html.Div([
     Input('percent-dropdown', 'value')
 )
 #def dot(_):  # Параметр "_" щоб позначити невикористаний Input
-def dot(value, df):
-    df = df.sample(frac=value)
+def dot(value):
+    dff = df.sample(frac=value)
     # Обчислення кількості для віку
-    df['Count_вік'] = df.groupby('Вік').cumcount() + 1  # !!! 
-    mx = df['Count_вік'].max()
-    mx_age = df['Вік'].max()
-    mn_age = df['Вік'].min()
+    dff['Count_вік'] = dff.groupby('Вік').cumcount() + 1  # !!! 
+    mx = dff['Count_вік'].max()
+    mx_age = dff['Вік'].max()
+    mn_age = dff['Вік'].min()
 
     # Створення графіку
-    fig = px.scatter(df, x='Вік', y='Count_вік')
+    fig = px.scatter(dff, x='Вік', y='Count_вік')
     # Настройка розміру точок
     fig.update_traces(marker=dict(size=10)) 
     # Настройка осі Y для відображення лише цілих чисел
