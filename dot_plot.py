@@ -24,7 +24,7 @@ app.layout = html.Div([
     Input('percent-dropdown', 'value')
 )
 #def dot(_):  # Параметр "_" щоб позначити невикористаний Input
-def dot(value):
+def dot(value, df):
     df = df.sample(frac=value)
     # Обчислення кількості для віку
     df['Count_вік'] = df.groupby('Вік').cumcount() + 1  # !!! 
