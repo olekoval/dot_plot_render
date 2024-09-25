@@ -4,7 +4,7 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-import dash_boostrap_components as dbc
+import dash_bootstrap_components as dbc
 
 # Завантаження даних
 df = pd.read_csv('ehr_684rows.csv')
