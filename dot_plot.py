@@ -4,21 +4,28 @@ from dash import Dash, html, dcc, callback, Output, Input
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
+import dash_boostrap_components as dbc
 
 # Завантаження даних
 df = pd.read_csv('ehr_684rows.csv')
 
 # Ініціалізація додатка Dash
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Оформлення макету
-app.layout = html.Div([
-    html.H1(children='Dot plot', style={'textAlign':'center'}),
-    dcc.Dropdown([0.25, 0.50, 0.75, 1], 1, id='percent-dropdown'),
-    dcc.Graph(id='dot-plot-content'),
-    html.H1(children='Box plot', style={'textAlign':'center'}),
-    dcc.Graph(id='box-plot-content')
+app.layout = dbc.Container([
+    dbc.Row([  # Один рядок з двома колонками
+    dbc.Col([  # Перша колонка   
+        html.H1(children='Dot plot', style={'textAlign':'center'}),
+        dcc.Dropdown([0.25, 0.50, 0.75, 1], 1, id='percent-dropdown'),
+        dcc.Graph(id='dot-plot-content')
+    ], width=6), # Ширина 6/12 (половина екрану)
+     dbc.Col([  # Друга колонка   
+        html.H1(children='Box plot', style={'textAlign':'center'}),
+        dcc.Graph(id='box-plot-content')
+     ], width=6)  # Ширина 6/12 (половина екрану)
 ])
+], fluid=True)    
 
 # Callback для оновлення графіків
 @callback(
